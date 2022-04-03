@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.yandihard.newsapp.model.ArticlesItem
 import com.yandihard.newsapp.model.NewsResponse
 import com.yandihard.newsapp.repository.NewsRepository
+import com.yandihard.newsapp.util.Constants.Companion.COUNTRY_CODE
 import com.yandihard.newsapp.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -21,7 +22,7 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
     var searchNewsResponse: NewsResponse? = null
 
     init {
-        getBreakingNews("id")
+        getBreakingNews(COUNTRY_CODE)
     }
 
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {

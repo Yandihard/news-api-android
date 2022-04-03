@@ -1,5 +1,6 @@
 package com.yandihard.newsapp.ui.home
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import com.yandihard.newsapp.R
 import com.yandihard.newsapp.activity.MainActivity
 import com.yandihard.newsapp.adapter.NewsAdapter
 import com.yandihard.newsapp.databinding.FragmentHomeBinding
+import com.yandihard.newsapp.repository.NewsRepository
+import com.yandihard.newsapp.util.Constants.Companion.COUNTRY_CODE
 import com.yandihard.newsapp.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.yandihard.newsapp.util.Resource.*
 import com.yandihard.newsapp.viewmodel.NewsViewModel
@@ -26,6 +29,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: NewsViewModel
+    private lateinit var newsRepository: NewsRepository
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +45,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as MainActivity).viewModel
+        newsRepository = NewsRepository(requireActivity())
+        viewModel = NewsViewModel(newsRepository)
+        val factory = NewsViewModelProviderFactory.getInstance(requireActivity())
+        viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
         setupRecyclerView()
         binding.rvHome.setHasFixedSize(true)
@@ -58,30 +66,36 @@ class HomeFragment : Fragment() {
     }
 
     private fun getAllNews(viewModel: NewsViewModel) {
-        viewModel.breakingNews.observe(viewLifecycleOwner, { response ->
-            when(response) {
+        viewModel.breakingNews.observe(viewLifecycleOwner) { response ->
+            when (response) {
                 is Success -> {
                     hideProgressBar()
                     response.data.let {
                         newsAdapter.differ.submitList(it?.articles?.toList())
                         val totalPages = it?.totalResults!! / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
-                        if(isLastPage) {
-                            binding.rvHome.setPadding(0 , 0, 0, 0)
+                        if (isLastPage) {
+                            binding.rvHome.setPadding(0, 0, 0, 0)
                         }
                     }
                 }
                 is Error -> {
                     hideProgressBar()
                     response.message?.let {
-                        view?.let { it1 -> Snackbar.make(it1, "An error occured $it", Snackbar.LENGTH_SHORT).show() }
+                        view?.let { it1 ->
+                            Snackbar.make(
+                                it1,
+                                "An error occured $it",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
                 is Loading -> {
                     showProgressBar()
                 }
             }
-        })
+        }
     }
 
     private fun hideProgressBar() {
@@ -121,7 +135,7 @@ class HomeFragment : Fragment() {
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
                     isTotalMoreThanVisible && isScrolling
             if(shouldPaginate) {
-                viewModel.getBreakingNews("id")
+                viewModel.getBreakingNews(COUNTRY_CODE)
                 isScrolling = false
             }
         }

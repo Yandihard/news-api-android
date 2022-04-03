@@ -8,13 +8,13 @@ import java.io.Serializable
 data class NewsResponse(
 
 	@field:SerializedName("totalResults")
-	val totalResults: Int? = null,
+	var totalResults: Int? = null,
 
 	@field:SerializedName("articles")
-	val articles: MutableList<ArticlesItem>,
+	var articles: MutableList<ArticlesItem>,
 
 	@field:SerializedName("status")
-	val status: String? = null
+	var status: String? = null
 )
 
 @Entity(tableName = "articles")
@@ -24,35 +24,35 @@ data class ArticlesItem(
 	var id: Int? = null,
 
 	@field:SerializedName("publishedAt")
-	val publishedAt: String? = null,
+	var publishedAt: String? = null,
 
 	@field:SerializedName("author")
-	val author: String? = null,
+	var author: String? = null,
 
 	@field:SerializedName("urlToImage")
-	val urlToImage: String? = null,
+	var urlToImage: String? = null,
 
 	@field:SerializedName("description")
-	val description: String? = null,
+	var description: String? = null,
 
 	@field:SerializedName("source")
-	val source: Source? = null,
+	var source: Source? = null,
 
 	@field:SerializedName("title")
-	val title: String? = null,
+	var title: String? = null,
 
 	@field:SerializedName("url")
-	val url: String? = null,
+	var url: String? = null,
 
 	@field:SerializedName("content")
-	val content: String? = null
+	var content: String? = null
 ) : Serializable
 
 data class Source(
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	var name: String? = null,
 
 	@field:SerializedName("id")
-	val id: Any? = null
+	var id: Any? = null
 )

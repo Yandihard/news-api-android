@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var viewModel: NewsViewModel
-    private val newsRepository = NewsRepository(Application())
+    lateinit var newsRepository: NewsRepository
 
 //    init {
 //        viewModel = NewsViewModel(newsRepository)
@@ -31,9 +31,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //        val newsRepository = NewsRepository(this)
+        newsRepository = NewsRepository(Application())
         viewModel = NewsViewModel(newsRepository)
         val factory = NewsViewModelProviderFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)

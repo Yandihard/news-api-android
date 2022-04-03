@@ -1,5 +1,6 @@
 package com.yandihard.newsapp.ui.article
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.yandihard.newsapp.R
 import com.yandihard.newsapp.activity.MainActivity
 import com.yandihard.newsapp.databinding.FragmentArticleBinding
 import com.yandihard.newsapp.model.ArticlesItem
+import com.yandihard.newsapp.repository.NewsRepository
 import com.yandihard.newsapp.viewmodel.NewsViewModel
 import com.yandihard.newsapp.viewmodel.NewsViewModelProviderFactory
 
@@ -24,6 +26,7 @@ class ArticleFragment : Fragment() {
     private val binding get() = _binding!!
     private var statusFavorite = false
     lateinit var viewModel: NewsViewModel
+    lateinit var newsRepository: NewsRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentArticleBinding.inflate(inflater, container, false)
@@ -34,7 +37,10 @@ class ArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as MainActivity).viewModel
+        newsRepository = NewsRepository(requireActivity())
+        viewModel = NewsViewModel(newsRepository)
+        val factory = NewsViewModelProviderFactory.getInstance(requireActivity())
+        viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
         val article = args.article
         binding.webView.apply {
@@ -72,13 +78,13 @@ class ArticleFragment : Fragment() {
     }
 
     private fun favoriteCheck(viewModel: NewsViewModel, article: ArticlesItem) {
-        viewModel.getSavedNews()?.observe(viewLifecycleOwner, {
+        viewModel.getSavedNews()?.observe(viewLifecycleOwner) {
             for (data in it) {
                 if (data.url == article.url) {
                     statusFavorite = true
                     setStatusFavorite(statusFavorite)
                 }
             }
-        })
+        }
     }
 }

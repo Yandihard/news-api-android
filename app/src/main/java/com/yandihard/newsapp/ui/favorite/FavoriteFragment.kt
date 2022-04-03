@@ -1,5 +1,6 @@
 package com.yandihard.newsapp.ui.favorite
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.yandihard.newsapp.R
 import com.yandihard.newsapp.activity.MainActivity
 import com.yandihard.newsapp.adapter.NewsAdapter
 import com.yandihard.newsapp.databinding.FragmentFavoriteBinding
+import com.yandihard.newsapp.repository.NewsRepository
 import com.yandihard.newsapp.viewmodel.NewsViewModel
 import com.yandihard.newsapp.viewmodel.NewsViewModelProviderFactory
 
@@ -25,6 +27,7 @@ class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: NewsViewModel
+    private lateinit var newsRepository: NewsRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
@@ -35,7 +38,10 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as MainActivity).viewModel
+        newsRepository = NewsRepository(requireActivity())
+        viewModel = NewsViewModel(newsRepository)
+        val factory = NewsViewModelProviderFactory.getInstance(requireActivity())
+        viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
         setupRecyclerView()
         binding.rvFavorite.setHasFixedSize(true)
@@ -71,9 +77,9 @@ class FavoriteFragment : Fragment() {
             attachToRecyclerView(binding.rvFavorite)
         }
 
-        viewModel.getSavedNews()?.observe(viewLifecycleOwner, {
+        viewModel.getSavedNews()?.observe(viewLifecycleOwner) {
             newsAdapter.differ.submitList(it)
-        })
+        }
     }
 
     private fun goToArticle() {

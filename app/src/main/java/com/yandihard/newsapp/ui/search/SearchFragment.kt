@@ -1,5 +1,6 @@
 package com.yandihard.newsapp.ui.search
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.yandihard.newsapp.R
 import com.yandihard.newsapp.activity.MainActivity
 import com.yandihard.newsapp.adapter.NewsAdapter
 import com.yandihard.newsapp.databinding.FragmentSearchBinding
+import com.yandihard.newsapp.repository.NewsRepository
 import com.yandihard.newsapp.util.Constants
 import com.yandihard.newsapp.util.Constants.Companion.SEARCH_TIME_DELAY
 import com.yandihard.newsapp.util.Resource
@@ -32,6 +34,7 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: NewsViewModel
+    private lateinit var newsRepository: NewsRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +49,10 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as MainActivity).viewModel
+        newsRepository = NewsRepository(requireActivity())
+        viewModel = NewsViewModel(newsRepository)
+        val factory = NewsViewModelProviderFactory.getInstance(requireActivity())
+        viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
         setupEditableSearchNews(viewModel)
 
@@ -87,30 +93,36 @@ class SearchFragment : Fragment() {
     }
 
     private fun getAllNews(viewModel: NewsViewModel) {
-        viewModel.searchNews.observe(viewLifecycleOwner, { response ->
-            when(response) {
+        viewModel.searchNews.observe(viewLifecycleOwner) { response ->
+            when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data.let {
                         newsAdapter.differ.submitList(it?.articles?.toList())
                         val totalPages = it?.totalResults!! / Constants.QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.searchNewsPage == totalPages
-                        if(isLastPage) {
-                            binding.rvSearch.setPadding(0 , 0, 0, 0)
+                        if (isLastPage) {
+                            binding.rvSearch.setPadding(0, 0, 0, 0)
                         }
                     }
                 }
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let {
-                        view?.let { it1 -> Snackbar.make(it1, "An error occured $it", Snackbar.LENGTH_SHORT).show() }
+                        view?.let { it1 ->
+                            Snackbar.make(
+                                it1,
+                                "An error occured $it",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
                 is Resource.Loading -> {
                     showProgressBar()
                 }
             }
-        })
+        }
     }
 
     private fun hideProgressBar() {
