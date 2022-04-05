@@ -87,7 +87,7 @@ class FavoriteFragment : Fragment() {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
-            findNavController().navigate(R.id.action_navigation_favorite_to_articleFragment, bundle)
+            findNavController().navigate(R.id.action_navigation_favorite_to_articleActivity, bundle)
         }
     }
 

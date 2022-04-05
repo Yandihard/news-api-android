@@ -11,8 +11,8 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            android:id="@+id/action_navigation_home_to_articleActivity"
+            app:destination="@id/articleActivity" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_favorite"
             app:destination="@id/navigation_favorite" />
@@ -27,8 +27,8 @@
         android:label="Search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_navigation_search_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            android:id="@+id/action_navigation_search_to_articleActivity"
+            app:destination="@id/articleActivity" />
     </fragment>
 
     <fragment
@@ -37,14 +37,14 @@
         android:label="Favorite"
         tools:layout="@layout/fragment_favorite" >
         <action
-            android:id="@+id/action_navigation_favorite_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            android:id="@+id/action_navigation_favorite_to_articleActivity"
+            app:destination="@id/articleActivity" />
     </fragment>
     <fragment
-        android:id="@+id/articleFragment"
-        android:name="com.yandihard.newsapp.ui.article.ArticleFragment"
+        android:id="@+id/articleActivity"
+        android:name="com.yandihard.newsapp.activity.ArticleActivity"
         android:label="Article"
-        tools:layout="@layout/fragment_article">
+        tools:layout="@layout/activity_article">
         <argument
             android:name="article"
             app:argType="com.yandihard.newsapp.model.ArticlesItem" />

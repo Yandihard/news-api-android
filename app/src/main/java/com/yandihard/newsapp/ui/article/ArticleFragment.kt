@@ -1,18 +1,15 @@
 package com.yandihard.newsapp.ui.article
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebViewClient
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.yandihard.newsapp.R
-import com.yandihard.newsapp.activity.MainActivity
 import com.yandihard.newsapp.databinding.FragmentArticleBinding
 import com.yandihard.newsapp.model.ArticlesItem
 import com.yandihard.newsapp.repository.NewsRepository
@@ -21,7 +18,7 @@ import com.yandihard.newsapp.viewmodel.NewsViewModelProviderFactory
 
 class ArticleFragment : Fragment() {
 
-    private val args: ArticleFragmentArgs by navArgs()
+//    private val args: ArticleFragmentArgs by navArgs()
     private var _binding: FragmentArticleBinding? = null
     private val binding get() = _binding!!
     private var statusFavorite = false
@@ -37,22 +34,28 @@ class ArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
+        navView?.visibility = View.GONE
+        binding.toolbar.setNavigationIcon(R.drawable.ic_back)
+        binding.toolbar.setNavigationOnClickListener {
+        }
+
         newsRepository = NewsRepository(requireActivity())
         viewModel = NewsViewModel(newsRepository)
         val factory = NewsViewModelProviderFactory.getInstance(requireActivity())
         viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
 
-        val article = args.article
-        binding.webView.apply {
-            webViewClient = WebViewClient()
-            loadUrl(article.url.toString())
-        }
-
-        favoriteCheck(viewModel, article)
-        setStatusFavorite(statusFavorite)
-        binding.fab.setOnClickListener {
-            addToFavorite(viewModel, article)
-        }
+//        val article = args.article
+//        binding.webView.apply {
+//            webViewClient = WebViewClient()
+//            loadUrl(article.url.toString())
+//        }
+//
+//        favoriteCheck(viewModel, article)
+//        setStatusFavorite(statusFavorite)
+//        binding.fab.setOnClickListener {
+//            addToFavorite(viewModel, article)
+//        }
     }
 
     private fun setStatusFavorite(statusFavorite: Boolean) {

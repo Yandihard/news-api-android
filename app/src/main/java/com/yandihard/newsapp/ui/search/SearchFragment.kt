@@ -1,6 +1,5 @@
 package com.yandihard.newsapp.ui.search
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.yandihard.newsapp.R
-import com.yandihard.newsapp.activity.MainActivity
 import com.yandihard.newsapp.adapter.NewsAdapter
 import com.yandihard.newsapp.databinding.FragmentSearchBinding
 import com.yandihard.newsapp.repository.NewsRepository
@@ -88,7 +86,7 @@ class SearchFragment : Fragment() {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
-            findNavController().navigate(R.id.action_navigation_search_to_articleFragment, bundle)
+            findNavController().navigate(R.id.action_navigation_search_to_articleActivity, bundle)
         }
     }
 

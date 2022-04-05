@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yandihard.newsapp.R
 import com.yandihard.newsapp.databinding.ActivityMainBinding
 import com.yandihard.newsapp.repository.NewsRepository
+import com.yandihard.newsapp.util.IOnBackPressed
 import com.yandihard.newsapp.viewmodel.NewsViewModel
 import com.yandihard.newsapp.viewmodel.NewsViewModelProviderFactory
 
@@ -20,10 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var viewModel: NewsViewModel
     lateinit var newsRepository: NewsRepository
-
-//    init {
-//        viewModel = NewsViewModel(newsRepository)
-//    }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
