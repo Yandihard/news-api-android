@@ -15,7 +15,7 @@ data class NewsResponse(
 
 	@field:SerializedName("status")
 	var status: String? = null
-)
+) : Serializable
 
 @Entity(tableName = "articles")
 data class ArticlesItem(
@@ -55,4 +55,4 @@ data class Source(
 
 	@field:SerializedName("id")
 	var id: Any? = null
-)
+) : Serializable

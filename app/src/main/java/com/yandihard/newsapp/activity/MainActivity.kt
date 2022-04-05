@@ -27,8 +27,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
 //        val newsRepository = NewsRepository(this)
-        newsRepository = NewsRepository(Application())
+        newsRepository = NewsRepository(applicationContext)
         viewModel = NewsViewModel(newsRepository)
         val factory = NewsViewModelProviderFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]

@@ -7,10 +7,12 @@
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.175" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.175" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_baseline_unfavorite_24.xml" value="0.1954337899543379" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_bookmark.xml" value="0.116" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.175" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.175" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_share.xml" value="0.116" />
-        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/activity_article.xml" value="0.16485507246376813" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_unbookmark.xml" value="0.116" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/activity_article.xml" value="0.25" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_article.xml" value="0.18885869565217392" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.12771739130434784" />

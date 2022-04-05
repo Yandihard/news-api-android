@@ -40,7 +40,7 @@
             android:id="@+id/action_navigation_favorite_to_articleActivity"
             app:destination="@id/articleActivity" />
     </fragment>
-    <fragment
+    <activity
         android:id="@+id/articleActivity"
         android:name="com.yandihard.newsapp.activity.ArticleActivity"
         android:label="Article"
@@ -48,5 +48,5 @@
         <argument
             android:name="article"
             app:argType="com.yandihard.newsapp.model.ArticlesItem" />
-    </fragment>
+    </activity>
 </navigation>
