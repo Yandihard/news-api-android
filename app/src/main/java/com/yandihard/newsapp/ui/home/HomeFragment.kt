@@ -10,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.shimmer.Shimmer
-import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.snackbar.Snackbar
 import com.yandihard.newsapp.R
 import com.yandihard.newsapp.adapter.NewsAdapter
@@ -28,7 +26,6 @@ class HomeFragment : Fragment() {
     private lateinit var newsAdapter: NewsAdapter
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var shimmer: ShimmerFrameLayout
     private lateinit var viewModel: NewsViewModel
     private lateinit var newsRepository: NewsRepository
     var isLoading = false
