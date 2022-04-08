@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.snackbar.Snackbar
 import com.yandihard.newsapp.R
 import com.yandihard.newsapp.adapter.NewsAdapter
@@ -26,8 +28,12 @@ class HomeFragment : Fragment() {
     private lateinit var newsAdapter: NewsAdapter
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var shimmer: ShimmerFrameLayout
     private lateinit var viewModel: NewsViewModel
     private lateinit var newsRepository: NewsRepository
+    var isLoading = false
+    var isLastPage = false
+    var isScrolling = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,9 +52,13 @@ class HomeFragment : Fragment() {
         viewModel = NewsViewModel(newsRepository)
         val factory = NewsViewModelProviderFactory.getInstance(requireActivity())
         viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
+        binding.apply {
+            tvTitle.text = resources.getString(R.string.news)
+            rvHome.layoutManager = LinearLayoutManager(context)
+            rvHome.setHasFixedSize(true)
+        }
 
         setupRecyclerView()
-        binding.rvHome.setHasFixedSize(true)
         getAllNews(viewModel)
         goToArticle()
     }
@@ -96,18 +106,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun hideProgressBar() {
-        binding.progressBar.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.GONE
+        binding.rvHome.visibility = View.VISIBLE
         isLoading = false
     }
 
     private fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
+        binding.rvHome.visibility = View.GONE
         isLoading = true
     }
-
-    var isLoading = false
-    var isLastPage = false
-    var isScrolling = false
 
     private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

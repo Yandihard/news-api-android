@@ -1,7 +1,6 @@
 package com.yandihard.newsapp.activity
 
 import android.os.Bundle
-import android.view.View
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat

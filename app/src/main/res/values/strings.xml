@@ -5,6 +5,10 @@
     <string name="title_notifications">Notifications</string>
     <string name="favorite">Favorite</string>
     <string name="search">Search</string>
+    <string name="news">Headline News</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="headline">Headline</string>
+    <string name="content_news">Content News</string>
+    <string name="cari_berita">Cari Berita</string>
 </resources>

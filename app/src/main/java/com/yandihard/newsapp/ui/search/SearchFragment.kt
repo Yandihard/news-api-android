@@ -125,11 +125,13 @@ class SearchFragment : Fragment() {
 
     private fun hideProgressBar() {
         binding.progressBar.visibility = View.INVISIBLE
+        binding.rvSearch.visibility = View.VISIBLE
         isLoading = false
     }
 
     private fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
+        binding.rvSearch.visibility = View.GONE
         isLoading = true
     }
 

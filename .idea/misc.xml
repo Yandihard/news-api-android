@@ -17,10 +17,11 @@
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_article.xml" value="0.18885869565217392" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.12771739130434784" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_favorite.xml" value="0.12817028985507245" />
-        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_home.xml" value="0.18885869565217392" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_home.xml" value="0.13895694784739238" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_notifications.xml" value="0.1082427536231884" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_search.xml" value="0.18" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/item_row_article.xml" value="0.25" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/item_row_shimmer.xml" value="0.16485507246376813" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14629629629629629" />
       </map>
     </option>

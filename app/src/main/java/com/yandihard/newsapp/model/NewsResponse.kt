@@ -1,8 +1,10 @@
 package com.yandihard.newsapp.model
 
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import org.jetbrains.annotations.NotNull
 import java.io.Serializable
 
 data class NewsResponse(
@@ -20,7 +22,7 @@ data class NewsResponse(
 @Entity(tableName = "articles")
 data class ArticlesItem(
 
-	@PrimaryKey(autoGenerate = true)
+//	@PrimaryKey(autoGenerate = true)
 	var id: Int? = null,
 
 	@field:SerializedName("publishedAt")
@@ -41,8 +43,9 @@ data class ArticlesItem(
 	@field:SerializedName("title")
 	var title: String? = null,
 
+	@PrimaryKey
 	@field:SerializedName("url")
-	var url: String? = null,
+	var url: String = "",
 
 	@field:SerializedName("content")
 	var content: String? = null
