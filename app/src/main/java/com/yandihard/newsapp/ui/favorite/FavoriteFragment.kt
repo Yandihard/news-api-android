@@ -1,12 +1,10 @@
 package com.yandihard.newsapp.ui.favorite
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.yandihard.newsapp.R
-import com.yandihard.newsapp.activity.MainActivity
 import com.yandihard.newsapp.adapter.NewsAdapter
 import com.yandihard.newsapp.databinding.FragmentFavoriteBinding
 import com.yandihard.newsapp.repository.NewsRepository

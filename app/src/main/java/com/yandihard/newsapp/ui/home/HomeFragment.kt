@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
             tvTitle.text = resources.getString(R.string.news)
             rvHome.layoutManager = LinearLayoutManager(context)
             rvHome.setHasFixedSize(true)
+            tryAgain.setOnClickListener { viewModel.getBreakingNews(COUNTRY_CODE) }
         }
 
         setupRecyclerView()

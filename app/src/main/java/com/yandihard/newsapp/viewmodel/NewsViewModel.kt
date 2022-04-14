@@ -20,21 +20,19 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
     var searchNewsResponse: NewsResponse? = null
+    var newSearchQuery:String? = null
+    var oldSearchQuery:String? = null
 
     init {
         getBreakingNews(COUNTRY_CODE)
     }
 
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
-        breakingNews.postValue(Resource.Loading())
-        val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
-        breakingNews.postValue(handleBreakingNewsResponse(response))
+        safeBreakingNewsCall(countryCode)
     }
 
     fun searchNews(searchQuery: String) = viewModelScope.launch {
-        searchNews.postValue(Resource.Loading())
-        val response = newsRepository.searchNews(searchQuery, searchNewsPage)
-        searchNews.postValue(handleSearchNewsResponse(response))
+        safeSearchNewsCall(searchQuery)
     }
 
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
@@ -79,5 +77,18 @@ class NewsViewModel(private val newsRepository: NewsRepository) : ViewModel() {
 
     fun deleteNews(articlesItem: ArticlesItem) = viewModelScope.launch {
         newsRepository.deleteNews(articlesItem)
+    }
+
+    private suspend fun safeSearchNewsCall(searchQuery: String) {
+//        newSearchQuery = searchQuery
+        searchNews.postValue(Resource.Loading())
+        val response = newsRepository.searchNews(searchQuery, searchNewsPage)
+        searchNews.postValue(handleSearchNewsResponse(response))
+    }
+
+    private suspend fun safeBreakingNewsCall(countryCode: String) {
+        breakingNews.postValue(Resource.Loading())
+        val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
+        breakingNews.postValue(handleBreakingNewsResponse(response))
     }
 }

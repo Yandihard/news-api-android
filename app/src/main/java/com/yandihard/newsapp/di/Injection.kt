@@ -6,8 +6,11 @@ import com.yandihard.newsapp.repository.NewsRepository
 
 object Injection {
 
-    fun provideRepository(context: Context): NewsRepository {
+    fun provideApplication(): Application {
+        return Application()
+    }
 
+    fun provideRepository(context: Context): NewsRepository {
         return NewsRepository(context)
     }
 }

@@ -12,8 +12,12 @@
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.175" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_share.xml" value="0.116" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/ic_unbookmark.xml" value="0.116" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/indicator_selector.xml" value="0.116" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/selected.xml" value="0.116" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/drawable/unselected.xml" value="0.116" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/activity_article.xml" value="0.25" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/activity_on_boarding.xml" value="0.1" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.16485507246376813" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_article.xml" value="0.18885869565217392" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.12771739130434784" />
@@ -23,6 +27,8 @@
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/fragment_search.xml" value="0.18" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/item_row_article.xml" value="0.25" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/item_row_shimmer.xml" value="0.16485507246376813" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/no_connection.xml" value="0.18" />
+        <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/layout/on_boarding_screen_layout.xml" value="0.16485507246376813" />
         <entry key="..\:/Backup Kotlin Android/NewsApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14629629629629629" />
       </map>
     </option>

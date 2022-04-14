@@ -1,6 +1,5 @@
 package com.yandihard.newsapp.activity
 
-import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +11,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yandihard.newsapp.R
 import com.yandihard.newsapp.databinding.ActivityMainBinding
 import com.yandihard.newsapp.repository.NewsRepository
-import com.yandihard.newsapp.util.IOnBackPressed
 import com.yandihard.newsapp.viewmodel.NewsViewModel
 import com.yandihard.newsapp.viewmodel.NewsViewModelProviderFactory
 
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
-//        val newsRepository = NewsRepository(this)
         newsRepository = NewsRepository(applicationContext)
         viewModel = NewsViewModel(newsRepository)
         val factory = NewsViewModelProviderFactory.getInstance(this)
@@ -43,11 +40,4 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
-//    override fun onBackPressed() {
-//        val fragment = this.supportFragmentManager.findFragmentById(R.id.articleFragment)
-//        (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
-//            super.onBackPressed()
-//        }
-//    }
 }
